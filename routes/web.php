@@ -188,6 +188,18 @@ Route::get('/student/subscription', [SubscriptionController::class, 'index'])->n
 })->name('student.subscription');*/
 /*-------------------------------*/
 
+/*------- student payment page -------*/
+Route::get('/student/payment', function () {
+    return view('student.payment');
+})->name('student.payment');
+/*-------------------------------*/
+
+/*------- student payment-details page -------*/
+Route::get('/student/payment-details', function () {
+    return view('student.payment-details');
+})->name('student.payment-details');
+/*-------------------------------*/
+
 /*---------------------------------------------------------------------------------------------------------------*/
 
 /*--------------------------------------------------- tutor ---------------------------------------------------*/
