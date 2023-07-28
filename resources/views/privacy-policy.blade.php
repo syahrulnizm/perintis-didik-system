@@ -97,9 +97,9 @@
         </div>
     </section>
 
-    <?php include 'frame/footer.php';?>
+    @include('frame.footer')
 
-    <?php include 'frame/script.php';?>
+    @include('frame.script')
 
 </body>
 
