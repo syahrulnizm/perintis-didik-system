@@ -7,25 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    use HasFactory;
+    
+    protected $table = 'user';
     protected $primaryKey = 'userID';
-    public $incrementing = false;
+    public $incrementing = false; // Set to false since userID is not auto-incrementing
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'userID', 'userPass', 'userName', 'userNumber', 'userEmail', 'userCreateDate', 'userStatus',
+        'userID',
+        'password',
+        'userName',
+        'userNumber',
+        'userEmail',
+        'userCreateDate',
+        'userStatus',
+        'userType',
     ];
 
-    public function administrator()
-    {
-        return $this->hasOne(Administrator::class, 'userID', 'userID');
-    }
-
+    // Define the one-to-one relationship between User and Student
     public function student()
     {
         return $this->hasOne(Student::class, 'userID', 'userID');
-    }
-
-    public function tutor()
-    {
-        return $this->hasOne(Tutor::class, 'userID', 'userID');
     }
 }
