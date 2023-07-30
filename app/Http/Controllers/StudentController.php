@@ -8,52 +8,47 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
+    public function showRegistrationForm()
+    {
+        return view('student-sign-up');
+    }
+
     public function register(Request $request)
     {
-        // Validate the form data
-        $request->validate([
-            'name-student' => 'required|string|max:100',
-            'identity-card-student' => 'required|string|max:15',
-            'phoneNum-student' => 'required|string|max:15',
-            'email-student' => 'required|email|max:225|unique:user,userEmail',
-            'password-student' => 'required|string|min:8',
-            'name-parent' => 'required|string|max:100',
-            'identity-card-parent' => 'required|string|max:15',
-            'phoneNum-parent' => 'required|string|max:15',
-            'address' => 'required|string|max:200',
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'userName' => 'required|string|max:100',
+            'userNumber' => 'required|string|max:15',
+            'userEmail' => 'required|email|unique:user,userEmail',
+            'password' => 'required|string|min:6',
+
+            'guardianName' => 'required|string|max:100',
+            'guardianNumber' => 'required|string|max:15',
+            'studentAddress' => 'required|string|max:200',
         ]);
 
-        // Insert data into the 'user' table
-        $userID = $request->input('email-student');
-        $userPass = bcrypt($request->input('password-student'));
-        $userName = $request->input('name-student');
-        $userNumber = $request->input('phoneNum-student');
-        $userEmail = $request->input('email-student');
-        $userCreateDate = now()->toDateString();
-        $userStatus = 'Active';
-
-        DB::table('user')->insert([
-            'userID' => $userID,
-            'userPass' => $userPass,
-            'userName' => $userName,
-            'userNumber' => $userNumber,
-            'userEmail' => $userEmail,
-            'userCreateDate' => $userCreateDate,
-            'userStatus' => $userStatus,
+        // Create a new user
+        $user = User::create([
+            'userID' => uniqid(), // Generate a unique user ID
+            'userName' => $request->userName,
+            'userNumber' => $request->userNumber,
+            'userEmail' => $request->userEmail,
+            'password' => $request->password,
+            
+            'userCreateDate' => now(),
+            'userStatus' => 'Active',
+            'userType' => 'Student',
         ]);
 
-        // Insert data into the 'student' table
-        $guardianName = $request->input('name-parent');
-        $studentAddress = $request->input('address');
-        $guardianNumber = $request->input('phoneNum-parent');
-
-        DB::table('student')->insert([
-            'userID' => $userID,
-            'guardianName' => $guardianName,
-            'studentAddress' => $studentAddress,
-            'guardianNumber' => $guardianNumber,
+        // Create a new student record
+        $student = Student::create([
+            'userID' => $user->userID,
+            'guardianName' => $request->guardianName,
+            'guardianNumber' => $request->guardianNumber,
+            'studentAddress' => $request->studentAddress,
         ]);
 
-        return redirect()->route('student.home')->with('success', 'Registration successful!'); // Redirect to the student home page after registration
+        // Redirect to a success page or any other page as needed
+        return redirect()->route('student.subscription')->with('success', 'Registration successful!');
     }
 }

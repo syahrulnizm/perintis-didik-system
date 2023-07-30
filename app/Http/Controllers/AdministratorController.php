@@ -8,48 +8,45 @@ use App\Models\Administrator;
 
 class AdministratorController extends Controller
 {
+    public function showRegistrationForm()
+    {
+        return view('admin-sign-up');
+    }
+
     public function register(Request $request)
     {
-        // Validate the form data
-        $request->validate([
-            'name-admin' => 'required|string|max:100',
-            'identity-card-admin' => 'required|string|max:15',
-            'phoneNum-admin' => 'required|string|max:15',
-            'email-admin' => 'required|email|max:225|unique:user,userEmail',
-            'password-admin' => 'required|string|min:8',
-            'education-level-admin' => 'required|string|max:45',
-            'officeNum-admin' => 'required|string|max:10',
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'userName' => 'required|string|max:100',
+            'userNumber' => 'required|string|max:15',
+            'userEmail' => 'required|email|unique:user,userEmail',
+            'password' => 'required|string|min:6',
+
+            'adminRoles' => 'required|string|max:45',
+            'officeNumber' => 'required|string|max:10',
         ]);
 
-        // Insert data into the 'user' table
-        $userID = $request->input('email-admin');
-        $userPass = bcrypt($request->input('password-admin'));
-        $userName = $request->input('name-admin');
-        $userNumber = $request->input('phoneNum-admin');
-        $userEmail = $request->input('email-admin');
-        $userCreateDate = now()->toDateString();
-        $userStatus = 'Active';
-
-        DB::table('user')->insert([
-            'userID' => $userID,
-            'userPass' => $userPass,
-            'userName' => $userName,
-            'userNumber' => $userNumber,
-            'userEmail' => $userEmail,
-            'userCreateDate' => $userCreateDate,
-            'userStatus' => $userStatus,
+        // Create a new user
+        $user = User::create([
+            'userID' => uniqid(), // Generate a unique user ID
+            'userName' => $request->userName,
+            'userNumber' => $request->userNumber,
+            'userEmail' => $request->userEmail,
+            'password' => $request->password,
+            
+            'userCreateDate' => now(),
+            'userStatus' => 'Active',
+            'userType' => 'Admin',
         ]);
 
-        // Insert data into the 'administrator' table
-        $adminRoles = 'Super Admin'; // Assuming all administrators are Super Admins
-        $officeNumber = $request->input('officeNum-admin');
-
-        DB::table('administrator')->insert([
-            'userID' => $userID,
-            'adminRoles' => $adminRoles,
-            'officeNumber' => $officeNumber,
+        // Create a new administrator record
+        $administrator = Administrator::create([
+            'userID' => $user->userID,
+            'adminRoles' => $request->adminRoles,
+            'officeNumber' => $request->officeNumber,
         ]);
 
-        return redirect()->route('admin.home')->with('success', 'Registration successful!'); // Redirect to the admin home page after registration
+        // Redirect to a success page or any other page as needed
+        return redirect()->route('admin.home')->with('success', 'Registration successful!');
     }
 }
