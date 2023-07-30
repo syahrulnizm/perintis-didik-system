@@ -53,7 +53,8 @@
                                     <p class="text-primary m-0 fw-bold">Enter your payment details</p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+                                    <form method="POST" action="pay">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-xl-12 offset-xl-0">
                                                 <div class="mb-3"><label class="form-label" for="card-number"><strong>Card Number</strong></label><input class="form-control" type="text" id="card-number" name="card-number"></div>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TutorController;
+use App\Http\Controllers\PaymentController;
 
 use App\Http\Controllers\SubscriptionController;
 
@@ -198,6 +199,11 @@ Route::get('/student/payment', function () {
 Route::get('/student/payment-details', function () {
     return view('student.payment-details');
 })->name('student.payment-details');
+/*-------------------------------*/
+
+/*------- student payment-details controller -------*/
+Route::post('/student/payment-details/pay', [PaymentController::class, 'charge'])->name('charge');
+
 /*-------------------------------*/
 
 /*---------------------------------------------------------------------------------------------------------------*/
