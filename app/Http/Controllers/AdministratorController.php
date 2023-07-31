@@ -18,8 +18,8 @@ class AdministratorController extends Controller
     public function processLogin(Request $request)
     {
         $credentials = $request->validate([
-            'userEmail' => 'required|email',
-            'userPass' => 'required',
+            'userID' => 'required',
+            'password' => 'required',
         ]);
 
         $credentials['userType'] = 'Admin'; // Make sure it's a admin login only
@@ -28,7 +28,7 @@ class AdministratorController extends Controller
             return redirect()->route('admin.home');
         }
 
-        return redirect()->back()->withErrors(['userEmail' => 'Invalid credentials']);
+        return redirect()->back()->withErrors(['userID' => 'Invalid credentials']);
     }
 
     // -------------------------------------------
@@ -43,9 +43,10 @@ class AdministratorController extends Controller
         // Validate the incoming request data
         $validatedData = $request->validate([
             'userName' => 'required|string|max:100',
+            'userID' => 'required|string|max:12',
             'userNumber' => 'required|string|max:15',
             'userEmail' => 'required|email|unique:user,userEmail',
-            'userPass' => 'required|string|min:6',
+            'password' => 'required|string|min:6',
 
             'adminRoles' => 'required|string|max:45',
             'officeNumber' => 'required|string|max:10',
@@ -53,11 +54,11 @@ class AdministratorController extends Controller
 
         // Create a new user
         $user = User::create([
-            'userID' => uniqid(), // Generate a unique user ID
+            'userID' => $request->userID,
             'userName' => $request->userName,
             'userNumber' => $request->userNumber,
             'userEmail' => $request->userEmail,
-            'userPass' => bcrypt($request->userPass),
+            'password' => bcrypt($request->password),
             
             'userCreateDate' => now(),
             'userStatus' => 'Active',
