@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,6 +8,9 @@ class Package extends Model
 {
     protected $table = 'package';
     protected $primaryKey = 'packageID';
+    public $incrementing = false; 
+    public $timestamps = true;
+
     use HasFactory;
 
     protected $fillable = [
@@ -19,4 +21,8 @@ class Package extends Model
         'eduID'
     ];
 
+    public function educationLevel()
+    {
+        return $this->belongsTo(EducationLevel::class, 'eduID', 'eduID');
+    }
 }

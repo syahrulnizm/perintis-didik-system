@@ -52,6 +52,7 @@ class User extends Model implements Authenticatable
     }
 
     // Remember Me functionality
+
     public function getRememberToken()
     {
         return $this->remember_token;
