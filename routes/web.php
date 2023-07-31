@@ -5,9 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TutorController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
 
-use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,48 +25,16 @@ Route::get('/', function () {
 })->name('index');
 /*-------------------------------*/
 
+/*------- sign-in page -------*/
+Route::get('/sign-in', function () {
+    return view('sign-in');
+})->name('sign-in');
+/*-------------------------------*/
+
 /*------- about-us page -------*/
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
-/*-------------------------------*/
-
-/*------- admin-sign-in page -------*/
-Route::get('/admin-sign-in', function () {
-    return view('admin-sign-in');
-})->name('admin-sign-in');
-/*-------------------------------*/
-
-/*------- admin-sign-up page -------*/
-Route::get('/admin-sign-up', function () {
-    return view('admin-sign-up');
-})->name('admin-sign-up');
-/*-------------------------------*/
-
-/*------- Admin registration route -------*/
-Route::post('/admin/register', [AdministratorController::class, 'register'])->name('admin.register');
-/*-------------------------------*/
-
-/*------- privacy-policy page -------*/
-Route::get('/privacy-policy', function () {
-    return view('privacy-policy');
-})->name('privacy-policy');
-/*-------------------------------*/
-
-/*------- student-sign-in page -------*/
-Route::get('/student-sign-in', function () {
-    return view('student-sign-in');
-})->name('student-sign-in');
-/*-------------------------------*/
-
-/*------- student-sign-up page -------*/
-Route::get('/student-sign-up', function () {
-    return view('student-sign-up');
-})->name('student-sign-up');
-/*-------------------------------*/
-
-/*------- Student registration route -------*/
-Route::post('/student/register', [StudentController::class, 'register'])->name('student.register');
 /*-------------------------------*/
 
 /*------- team page -------*/
@@ -76,26 +43,61 @@ Route::get('/team', function () {
 })->name('team');
 /*-------------------------------*/
 
+/*------- privacy-policy page -------*/
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+})->name('privacy-policy');
+/*-------------------------------*/
+
 /*------- terms-of-use page -------*/
 Route::get('/terms-of-use', function () {
     return view('terms-of-use');
 })->name('terms-of-use');
 /*-------------------------------*/
 
+/*------- admin-sign-in page -------*/
+Route::get('/admin-sign-in', [AdministratorController::class, 'showLoginForm'])->name('admin.signin');
+Route::post('/admin-sign-in', [AdministratorController::class, 'processLogin']);
+/*-------------------------------*/
+
+/*------- admin-sign-up page -------*/
+Route::get('/admin-sign-up', 'App\Http\Controllers\AdministratorController@showRegistrationForm')
+    ->name('admin-sign-up');
+/*-------------------------------*/
+
+/*------- admin registration route -------*/
+Route::post('/admin-register', 'App\Http\Controllers\AdministratorController@register')
+    ->name('admin.register');
+/*-------------------------------*/
+
+/*------- student-sign-in page -------*/
+Route::get('/student-sign-in', [StudentController::class, 'showLoginForm'])->name('student.signin');
+Route::post('/student-sign-in', [StudentController::class, 'processLogin']);
+/*-------------------------------*/
+
+/*------- Student registration route -------*/
+Route::get('/student-sign-up', 'App\Http\Controllers\StudentController@showRegistrationForm')
+    ->name('student-sign-up');
+/*-------------------------------*/
+
+/*------- student registration route -------*/
+Route::post('/student-register', 'App\Http\Controllers\StudentController@register')
+    ->name('student.register');
+/*-------------------------------*/
+
 /*------- tutor-sign-in page -------*/
-Route::get('/tutor-sign-in', function () {
-    return view('tutor-sign-in');
-})->name('tutor-sign-in');
+Route::get('/tutor-sign-in', [TutorController::class, 'showLoginForm'])->name('tutor.signin');
+Route::post('/tutor-sign-in', [TutorController::class, 'processLogin']);
 /*-------------------------------*/
 
 /*------- tutor-sign-up page -------*/
-Route::get('/tutor-sign-up', function () {
-    return view('tutor-sign-up');
-})->name('tutor-sign-up');
+Route::get('/tutor-sign-up', 'App\Http\Controllers\TutorController@showRegistrationForm')
+    ->name('tutor-sign-up');
 /*-------------------------------*/
 
-/*------- Tutor registration route -------*/
-Route::post('/tutor/register', [TutorController::class, 'register'])->name('tutor.register');
+/*------- tutor registration route -------*/
+Route::post('/tutor-register', 'App\Http\Controllers\TutorController@register')
+    ->name('tutor.register');
 /*-------------------------------*/
 
 /*--------------------------------------------------- admin ---------------------------------------------------*/
@@ -183,10 +185,9 @@ Route::get('/student/schedule', function () {
 /*-------------------------------*/
 
 /*------- student subscription page -------*/
-Route::get('/student/subscription', [SubscriptionController::class, 'index'])->name('subscription.index');
-/*Route::get('/student/subscription', function () {
+Route::get('/student/subscription', function () {
     return view('student.subscription');
-})->name('student.subscription');*/
+})->name('student.subscription');
 /*-------------------------------*/
 
 /*------- student payment page -------*/
@@ -199,11 +200,6 @@ Route::get('/student/payment', function () {
 Route::get('/student/payment-details', function () {
     return view('student.payment-details');
 })->name('student.payment-details');
-/*-------------------------------*/
-
-/*------- student payment-details controller -------*/
-Route::post('/student/payment-details/pay', [PaymentController::class, 'charge'])->name('charge');
-
 /*-------------------------------*/
 
 /*---------------------------------------------------------------------------------------------------------------*/
