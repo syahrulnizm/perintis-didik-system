@@ -58,39 +58,14 @@
                                     <td style="text-align: center;">Monday</td>
                                     <td style="text-align: center;">2 hours</td>
                                     <td style="text-align: center;">UPSR</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button" style="margin-right: 10px;" data-bs-target="#edit-subject" data-bs-toggle="modal"><i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button><button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;"><i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">2</td>
-                                    <td style="text-align: center;">BM1</td>
-                                    <td style="text-align: center;">Bahasa Melayu</td>
-                                    <td style="text-align: center;">08:00 am - 10:00 am</td>
-                                    <td style="text-align: center;">Tuesday</td>
-                                    <td style="text-align: center;">2 hours</td>
-                                    <td style="text-align: center;">SPM</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button" style="margin-right: 10px;"><i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button><button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;"><i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">3</td>
-                                    <td style="text-align: center;">BIO1</td>
-                                    <td style="text-align: center;">Biology</td>
-                                    <td style="text-align: center;">08:00 am - 10:00 am</td>
-                                    <td style="text-align: center;">Wednesday</td>
-                                    <td style="text-align: center;">2 hours</td>
-                                    <td style="text-align: center;">SPM</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button" style="margin-right: 10px;"><i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button><button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;"><i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td style="text-align: center;"><strong>No</strong></td>
-                                    <td style="text-align: center;"><strong>ID</strong></td>
-                                    <td style="text-align: center;"><strong>Package Name</strong></td>
-                                    <td style="text-align: center;"><strong>Subject Quantity</strong></td>
-                                    <td style="text-align: center;"><strong>Price</strong></td>
-                                    <td style="text-align: center;"><strong>Price</strong></td>
-                                    <td style="text-align: center;"><strong>Education Level Name</strong></td>
-                                    <td></td>
+                                    <td style="text-align: center;">
+                                        <button class="btn btn-primary" type="button" style="margin-right: 10px;" data-bs-target="#edit-subject" data-bs-toggle="modal">
+                                        <i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;">
+                                        <i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button>
+                                    </td>
                                 </tr>
                             </tfoot>
                         </table>

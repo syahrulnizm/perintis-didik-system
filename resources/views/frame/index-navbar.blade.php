@@ -6,8 +6,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ route('index') }}"><i class="fas fa-home"></i><span>&nbsp;<strong>Home</strong></span></a></li>
-                <li class="nav-item"><a class="nav-link" href='sign-in'><i class="fas fa-sign-in-alt"></i><span>&nbsp;<strong>Sign In</strong></span></a></li>
-                <li class="nav-item"><a class="nav-link" href='about-us'><i class="fas fa-info-circle"></i><span>&nbsp;<strong>About us</strong></span></a></li>
+                    <li class="nav-item"><a class="nav-link" href='about-us'><i class="fas fa-info-circle"></i><span>&nbsp;<strong>About us</strong></span></a></li>
                 <li class="nav-item"><a class="nav-link" href='team'><i class="fas fa-users"></i><span>&nbsp;<strong>Team</strong></span></a></li>
             </ul>
         </div>

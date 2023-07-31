@@ -40,39 +40,28 @@
                             <thead>
                                 <tr>
                                     <th style="text-align: center;">No</th>
-                                    <th style="text-align: center;">ID</th>
                                     <th style="text-align: center;">Education Level Name</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($educationLevels as $edulevel)
                                 <tr>
-                                    <td style="text-align: center;">1</td>
-                                    <td style="text-align: center;">ED001</td>
-                                    <td style="text-align: center;">UPSR</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button" style="margin-right: 10px;" data-bs-target="#edit-education-level" data-bs-toggle="modal"><i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button><button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;"><i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button></td>
+                                    <td style="text-align: center;">{{ $loop->iteration}}</td>
+                                    <td style="text-align: center;">{{ $edulevel->eduName}}</td>
+
+                                    <td style="text-align: center;">
+                                        <button class="btn btn-primary" type="button" style="margin-right: 10px;" data-bs-target="#edit-education-level" data-bs-toggle="modal" onclick="handleEditButtonClick('{{ $edulevel->eduID }}', '{{ $edulevel->eduName }}')">
+                                        <i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;" onclick="confirmDelete('{{ $edulevel->eduID }}')">
+                                        <i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button>
+                                    </td>
+
                                 </tr>
-                                <tr>
-                                    <td style="text-align: center;">2</td>
-                                    <td style="text-align: center;">ED002</td>
-                                    <td style="text-align: center;">SPM</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button" style="margin-right: 10px;"><i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button><button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;"><i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">3</td>
-                                    <td style="text-align: center;">ED003</td>
-                                    <td style="text-align: center;">PT3</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button" style="margin-right: 10px;"><i class="fas fa-edit" style="color: rgb(255,255,255);"></i>&nbsp;Edit<span class="text-white-50 icon"></span></button><button class="btn btn-primary" type="button" style="background: var(--bs-red);border-style: none;"><i class="fas fa-trash-alt" style="color: rgb(255,255,255);"></i>&nbsp;Delete<span class="text-white-50 icon"></span></button></td>
-                                </tr>
+                                @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td style="text-align: center;"><strong>No</strong></td>
-                                    <td style="text-align: center;"><strong>ID</strong></td>
-                                    <td style="text-align: center;"><strong>Education Level Name</strong></td>
-                                    <td></td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <div class="row">
@@ -94,6 +83,8 @@
             </div>
         </div>
     </section>
+
+    <!-- Add Education Level Modal -->
     <div class="modal fade" role="dialog" tabindex="-1" id="add-education-level">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -101,18 +92,34 @@
                     <h4 class="modal-title">Add Education Level</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ url('/admin/education-level') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col">
-                                <div class="mb-3"><label class="form-label" id="package-name" for="username"><strong>Education Level Name</strong></label><input class="form-control" type="text" id="education-level-name" value="" name="education-level-name"></div>
+                                <div class="mb-3"><label class="form-label" id="educationlevel-id"><strong>Education Level ID</strong></label>
+                                <input class="form-control" type="text" id="educationlevel-id"></div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3"><label class="form-label" id="educationlevel-name"><strong>Education Level Name</strong></label>
+                                <input class="form-control" type="text" id="educationlevel-name"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <button class="btn btn-light me-2" type="reset" data-bs-dismiss="modal">Clear</button>
+                                    <button class="btn btn-primary" type="submit">Add</button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer"><button class="btn btn-light" type="reset" data-bs-dismiss="modal">Clear</button><button class="btn btn-primary" type="button">Update</button></div>
             </div>
         </div>
     </div>
+    <!------------------------------->
+
+    <!-- Edit Education Level Modal -->
     <div class="modal fade" role="dialog" tabindex="-1" id="edit-education-level">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -120,18 +127,37 @@
                     <h4 class="modal-title">Edit Education Level</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="edit-edulevel-form" method="POST" action="">
+                        @csrf
+                        @method('PUT')
+
                         <div class="row">
                             <div class="col">
-                                <div class="mb-3"><label class="form-label" id="package-name-1" for="username"><strong>Education Level Name</strong></label><input class="form-control" type="text" id="education-level-name" value="SPM" name="education-level-name"></div>
+                                <div class="mb-3"><label class="form-label" id="package-name-1" for="username"><strong>Education Level Name</strong></label>
+                                <input class="form-control" type="text" id="eduName"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <button class="btn btn-light me-2" type="reset" data-bs-dismiss="modal">Clear</button>
+                                    <button class="btn btn-primary" type="submit" onclick="document.getElementById('edit-edulevel-form').submit()">Update</button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer"><button class="btn btn-light" type="reset" data-bs-dismiss="modal">Clear</button><button class="btn btn-primary" type="button">Update</button></div>
             </div>
         </div>
     </div>
+    <!-------------------------------->
+
+    <!-- Delete Data -->
+    <form id="delete-form" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+    <!----------------->
 
     @include('frame.footer')
 

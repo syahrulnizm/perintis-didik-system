@@ -51,35 +51,9 @@
                                     <td style="text-align: center;">SPM Package A</td>
                                     <td style="text-align: center;">2</td>
                                     <td style="text-align: center;">50</td>
-                                    <td style="text-align: center;"><a class="btn btn-primary" role="button" href="subscription-details.php"><i class="fas fa-info-circle" style="color: rgb(255,255,255);"></i>&nbsp;Details<span class="text-white-50 icon"></span></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Muhammad Aiman</td>
-                                    <td style="text-align: center;">SPM</td>
-                                    <td style="text-align: center;">SPM Package B</td>
-                                    <td style="text-align: center;">4</td>
-                                    <td style="text-align: center;">90</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button"><i class="fas fa-info-circle" style="color: rgb(255,255,255);"></i>&nbsp;Details<span class="text-white-50 icon"></span></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Nur Syafinaz</td>
-                                    <td style="text-align: center;">UPSR</td>
-                                    <td style="text-align: center;">UPSR Package C</td>
-                                    <td style="text-align: center;">3</td>
-                                    <td style="text-align: center;">70</td>
-                                    <td style="text-align: center;"><button class="btn btn-primary" type="button"><i class="fas fa-info-circle" style="color: rgb(255,255,255);"></i>&nbsp;Details<span class="text-white-50 icon"></span></button></td>
+                                    <td style="text-align: center;"><a class="btn btn-primary" role="button" href='subscription-details'><i class="fas fa-info-circle" style="color: rgb(255,255,255);"></i>&nbsp;Details<span class="text-white-50 icon"></span></a></td>
                                 </tr>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td><strong>Student Name</strong></td>
-                                    <td style="text-align: center;"><strong>Education Level</strong></td>
-                                    <td style="text-align: center;"><strong>Package</strong></td>
-                                    <td style="text-align: center;"><strong>Subject Quantity</strong></td>
-                                    <td style="text-align: center;"><strong>Price</strong></td>
-                                    <td></td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <div class="row">

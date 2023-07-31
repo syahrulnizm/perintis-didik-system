@@ -5,8 +5,6 @@
 
 <body>
 
-    @include('frame.student-navbar')
-
     <section class="py-5">
         <div class="container py-5">
             <div class="row mb-5">
@@ -27,31 +25,34 @@
                 </div>
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
-            @foreach ($packages as $pack)
-                <div class="col">
-                    <div class="card border-warning border-2 h-100">
-                        <div class="card-body d-flex flex-column justify-content-between p-4"><span class="badge bg-warning position-absolute top-0 end-0 rounded-bottom-left text-uppercase text-primary">Most Popular</span>
-                            <div>
-                                <h6 class="fw-bold text-center text-muted">{{ $pack->packageName}}</h6>
-                                <h4 class="display-5 fw-bold text-center mb-4">RM{{ $pack->packagePrice}}</h4>
-                                <ul class="list-unstyled">
-                                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-check fs-5 text-primary">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M5 12l5 5l10 -10"></path>
-                                            </svg></span><span>Education Level : SPM</span></li>
-                                    <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-check fs-5 text-primary">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M5 12l5 5l10 -10"></path>
-                                            </svg></span><span>Subject Quantity: {{ $pack->packageQuantity}}</span></li>
-                                </ul>
-                            </div><a class="btn btn-warning" role="button" href="#">Select</a>
+                @foreach ($packages as $pack)
+                    <div class="col">
+                        <div class="card border-warning border-2 h-100">
+                            <div class="card-body d-flex flex-column justify-content-between p-4">
+                                <div>
+                                    <h6 class="fw-bold text-center text-muted">Package {{ $pack->packageName }}</h6>
+                                    <h4 class="display-5 fw-bold text-center mb-4">RM{{ $pack->packagePrice }}</h4>
+                                    <ul class="list-unstyled">
+
+                                        <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-check fs-5 text-primary">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M5 12l5 5l10 -10"></path>
+                                                </svg></span><span>Education Level : {{ $pack->eduID }}</span></li>
+
+                                        <li class="d-flex mb-2"><span class="bs-icon-xs bs-icon-rounded bs-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-check fs-5 text-primary">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M5 12l5 5l10 -10"></path>
+                                                </svg></span><span>Subject Quantity: {{ $pack->packageQuantity }}</span></li>
+                                    </ul>
+                                </div><a class="btn btn-warning" role="button" href="#">Select</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </section>
+
     <div class="modal fade" role="dialog" tabindex="-1" id="subscription-subject">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

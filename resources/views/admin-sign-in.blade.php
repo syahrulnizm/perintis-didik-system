@@ -13,9 +13,21 @@
                 <div class="col-md-6 text-center"><img class="img-fluid w-100" src="{{ asset('img/illustrations/admin.png') }}"></div>
                 <div class="col-md-5 col-xl-4 text-center text-md-start">
                     <h2 class="display-6 fw-bold mb-5">Sign in as<br><span class="underline pb-1"><strong>Admin</strong></span></h2>
-                    <form method="post">
-                        <div class="mb-3"><input class="shadow form-control" type="email" id="email-admin" name="email-admin" placeholder="Email"></div>
-                        <div class="mb-3"><input class="shadow form-control" type="password" id="password-admin" name="password-admin" placeholder="Password"></div>
+                    <form method="post" action="{{ route('admin.signin') }}">
+                    @csrf
+                        <div class="mb-3"><input class="shadow form-control" type="email" id="userEmail" name="userEmail" placeholder="Email"></div>
+
+                        @error('userEmail')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                        <div class="mb-3"><input class="shadow form-control" type="password" id="password" name="password" placeholder="Password"></div>
+                        
+                        @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                        <input type="hidden" id="userType" name="userType" value="Admin">
                         <div class="mb-5"><button class="btn btn-primary shadow" type="submit">Log in</button></div>
                         <p>Dont have an account?&nbsp;<a href='admin-sign-up'>Sign up</a>&nbsp;</p>
                     </form>

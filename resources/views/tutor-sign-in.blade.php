@@ -13,11 +13,23 @@
                 <div class="col-md-6 text-center"><img class="img-fluid w-100" src="{{ asset('img/illustrations/tutor.png') }}"></div>
                 <div class="col-md-5 col-xl-4 text-center text-md-start">
                     <h2 class="display-6 fw-bold mb-5">Sign in as<br><span class="underline pb-1"><strong>Tutor</strong></span></h2>
-                    <form method="post">
-                        <div class="mb-3"><input class="shadow form-control" type="email" id="email-tutor" name="email-tutor" placeholder="Email"></div>
-                        <div class="mb-3"><input class="shadow form-control" type="password" id="password-tutor" name="password-tutor" placeholder="Password"></div>
+                    <form method="post" action="{{ route('tutor.signin') }}">
+                    @csrf
+                        <div class="mb-3"><input class="shadow form-control" type="email" id="userEmail" name="userEmail" placeholder="Email"></div>
+
+                        @error('userEmail')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                        <div class="mb-3"><input class="shadow form-control" type="password" id="password" name="password" placeholder="Password"></div>
+                        
+                        @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        
+                        <input type="hidden" id="userType" name="userType" value="Tutor">
                         <div class="mb-5"><button class="btn btn-primary shadow" type="submit">Log in</button></div>
-                        <p>Dont have an account?&nbsp;<a href='tutor-sign-up'>Sign up</a>&nbsp;</p>
+                        <p>Dont have an account?&nbsp;<a href='student-sign-up'>Sign up</a>&nbsp;</p>
                     </form>
                 </div>
             </div>
