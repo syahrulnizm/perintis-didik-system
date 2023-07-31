@@ -6,6 +6,7 @@ use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TutorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SubscriptionController;
 
 
 /*
@@ -92,7 +93,7 @@ Route::post('/tutor-sign-in', [TutorController::class, 'processLogin']);
 
 /*------- tutor-sign-up page -------*/
 Route::get('/tutor-sign-up', 'App\Http\Controllers\TutorController@showRegistrationForm')
-    ->name('tutor-sign-up');
+->name('tutor-sign-up');
 /*-------------------------------*/
 
 /*------- tutor registration route -------*/
@@ -145,9 +146,7 @@ Route::get('/admin/subject', function () {
 /*-------------------------------*/
 
 /*------- subscription page -------*/
-Route::get('/admin/subscription', function () {
-    return view('admin.subscription');
-})->name('admin.subscription');
+Route::get('/admin/subscription', [SubscriptionController::class, 'adminView']);
 /*-------------------------------*/
 
 /*------- subscription-details page -------*/

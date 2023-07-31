@@ -19,7 +19,7 @@ class AdministratorController extends Controller
     {
         $credentials = $request->validate([
             'userEmail' => 'required|email',
-            'password' => 'required',
+            'userPass' => 'required',
         ]);
 
         $credentials['userType'] = 'Admin'; // Make sure it's a admin login only
@@ -45,7 +45,7 @@ class AdministratorController extends Controller
             'userName' => 'required|string|max:100',
             'userNumber' => 'required|string|max:15',
             'userEmail' => 'required|email|unique:user,userEmail',
-            'password' => 'required|string|min:6',
+            'userPass' => 'required|string|min:6',
 
             'adminRoles' => 'required|string|max:45',
             'officeNumber' => 'required|string|max:10',
@@ -57,7 +57,7 @@ class AdministratorController extends Controller
             'userName' => $request->userName,
             'userNumber' => $request->userNumber,
             'userEmail' => $request->userEmail,
-            'password' => bcrypt($request->password),
+            'userPass' => bcrypt($request->userPass),
             
             'userCreateDate' => now(),
             'userStatus' => 'Active',

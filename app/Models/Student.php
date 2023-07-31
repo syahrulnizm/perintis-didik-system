@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Student extends Model
 {
@@ -13,6 +15,7 @@ class Student extends Model
     protected $primaryKey = 'userID';
     public $incrementing = false; // Set to false since userID is not auto-incrementing
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'userID',
@@ -22,7 +25,7 @@ class Student extends Model
     ];
 
     // Define the inverse one-to-one relationship between Student and User
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'userID', 'userID');
     }

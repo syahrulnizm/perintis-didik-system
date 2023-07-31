@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class StudentController extends Controller
 {
 
+
+
     public function showLoginForm()
     {
         return view('student-sign-in');
@@ -19,7 +21,7 @@ class StudentController extends Controller
     {
         $credentials = $request->validate([
             'userEmail' => 'required|email',
-            'password' => 'required',
+            'userPass' => 'required',
         ]);
 
         $credentials['userType'] = 'Student'; // Make sure it's a student login only
@@ -41,16 +43,16 @@ class StudentController extends Controller
     public function register(Request $request)
     {
         // Validate the incoming request data
-        $validatedData = $request->validate([
-            'userName' => 'required|string|max:100',
-            'userNumber' => 'required|string|max:15',
-            'userEmail' => 'required|email|unique:user,userEmail',
-            'password' => 'required|string|min:6',
+        // $validatedData = $request->validate([
+        //     'userName' => 'required|string|max:100',
+        //     'userNumber' => 'required|string|max:15',
+        //     'userEmail' => 'required|email|unique:user,userEmail',
+        //     'userPass' => 'required|string|min:6',
 
-            'guardianName' => 'required|string|max:100',
-            'guardianNumber' => 'required|string|max:15',
-            'studentAddress' => 'required|string|max:200',
-        ]);
+        //     'guardianName' => 'required|string|max:100',
+        //     'guardianNumber' => 'required|string|max:15',
+        //     'studentAddress' => 'required|string|max:200',
+        // ]);
 
         // Create a new user
         $user = User::create([
@@ -58,7 +60,7 @@ class StudentController extends Controller
             'userName' => $request->userName,
             'userNumber' => $request->userNumber,
             'userEmail' => $request->userEmail,
-            'password' => bcrypt($request->password),
+            'userPass' => bcrypt($request->userPass),
             
             'userCreateDate' => now(),
             'userStatus' => 'Active',

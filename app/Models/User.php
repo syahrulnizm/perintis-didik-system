@@ -14,10 +14,11 @@ class User extends Model implements Authenticatable
     protected $primaryKey = 'userID';
     public $incrementing = false; // Set to false since userID is not auto-incrementing
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'userID',
-        'password',
+        'userPass',
         'userName',
         'userNumber',
         'userEmail',
@@ -27,7 +28,7 @@ class User extends Model implements Authenticatable
     ];
 
     protected $hidden = [
-        'password',
+        'userPass'
     ];
 
     // Define the one-to-one relationship between User and Student
@@ -48,7 +49,7 @@ class User extends Model implements Authenticatable
 
     public function getAuthPassword()
     {
-        return $this->password; // Replace 'password' with the actual column name for the password field in your 'user' table
+        return $this->userPass; // Replace 'userPass' with the actual column name for the userPass field in your 'user' table
     }
 
     // Remember Me functionality

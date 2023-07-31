@@ -44,9 +44,10 @@
                                     <th></th>
                                 </tr>
                             </thead>
+                            @foreach ($studentInfo as $student)
                             <tbody>
                                 <tr>
-                                    <td>Muhammad Adam</td>
+                                    <td>{{$student -> user -> userName}}</td>
                                     <td style="text-align: center;">SPM</td>
                                     <td style="text-align: center;">SPM Package A</td>
                                     <td style="text-align: center;">2</td>
@@ -54,6 +55,7 @@
                                     <td style="text-align: center;"><a class="btn btn-primary" role="button" href='subscription-details'><i class="fas fa-info-circle" style="color: rgb(255,255,255);"></i>&nbsp;Details<span class="text-white-50 icon"></span></a></td>
                                 </tr>
                             </tbody>
+                            @endforeach
                         </table>
                     </div>
                     <div class="row">
