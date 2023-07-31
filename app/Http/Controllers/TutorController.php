@@ -5,9 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Tutor;
+use Illuminate\Support\Facades\Auth;
 
 class TutorController extends Controller
 {
+
+    public function showLoginForm()
+    {
+        return view('tutor-sign-in');
+    }
+
+    public function processLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'userEmail' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $credentials['userType'] = 'Tutor'; // Make sure it's a tutor login only
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('tutor.home');
+        }
+
+        return redirect()->back()->withErrors(['userEmail' => 'Invalid credentials']);
+    }
+
     public function showRegistrationForm()
     {
         return view('tutor-sign-up');
@@ -32,7 +55,7 @@ class TutorController extends Controller
             'userName' => $request->userName,
             'userNumber' => $request->userNumber,
             'userEmail' => $request->userEmail,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             
             'userCreateDate' => now(),
             'userStatus' => 'Active',

@@ -5,9 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Administrator;
+use Illuminate\Support\Facades\Auth;
 
 class AdministratorController extends Controller
 {
+
+    public function showLoginForm()
+    {
+        return view('admin-sign-in');
+    }
+
+    public function processLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'userEmail' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $credentials['userType'] = 'Admin'; // Make sure it's a admin login only
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('admin.home');
+        }
+
+        return redirect()->back()->withErrors(['userEmail' => 'Invalid credentials']);
+    }
+
+    // -------------------------------------------
+
     public function showRegistrationForm()
     {
         return view('admin-sign-up');
@@ -32,7 +57,7 @@ class AdministratorController extends Controller
             'userName' => $request->userName,
             'userNumber' => $request->userNumber,
             'userEmail' => $request->userEmail,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             
             'userCreateDate' => now(),
             'userStatus' => 'Active',
