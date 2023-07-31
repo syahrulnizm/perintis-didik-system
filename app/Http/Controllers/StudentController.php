@@ -18,7 +18,7 @@ class StudentController extends Controller
     public function processLogin(Request $request)
     {
         $credentials = $request->validate([
-            'userEmail' => 'required|email',
+            'userID' => 'required',
             'password' => 'required',
         ]);
 
@@ -28,7 +28,7 @@ class StudentController extends Controller
             return redirect()->route('student.home');
         }
 
-        return redirect()->back()->withErrors(['userEmail' => 'Invalid credentials']);
+        return redirect()->back()->withErrors(['userID' => 'Invalid credentials']);
     }
 
     // -------------------------------------------
@@ -43,6 +43,7 @@ class StudentController extends Controller
         // Validate the incoming request data
         $validatedData = $request->validate([
             'userName' => 'required|string|max:100',
+            'userID' => 'required|string|max:12',
             'userNumber' => 'required|string|max:15',
             'userEmail' => 'required|email|unique:user,userEmail',
             'password' => 'required|string|min:6',
@@ -54,7 +55,7 @@ class StudentController extends Controller
 
         // Create a new user
         $user = User::create([
-            'userID' => uniqid(), // Generate a unique user ID
+            'userID' => $request->userID,
             'userName' => $request->userName,
             'userNumber' => $request->userNumber,
             'userEmail' => $request->userEmail,
@@ -74,7 +75,7 @@ class StudentController extends Controller
         ]);
 
         // Redirect to a success page or any other page as needed
-        return redirect()->route('student.subscription')->with('success', 'Registration successful!');
+        return redirect()->route('student.home')->with('success', 'Registration successful!');
     }
     
     

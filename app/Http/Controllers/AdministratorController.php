@@ -18,7 +18,7 @@ class AdministratorController extends Controller
     public function processLogin(Request $request)
     {
         $credentials = $request->validate([
-            'userEmail' => 'required|email',
+            'userID' => 'required',
             'password' => 'required',
         ]);
 
@@ -28,7 +28,7 @@ class AdministratorController extends Controller
             return redirect()->route('admin.home');
         }
 
-        return redirect()->back()->withErrors(['userEmail' => 'Invalid credentials']);
+        return redirect()->back()->withErrors(['userID' => 'Invalid credentials']);
     }
 
     // -------------------------------------------
@@ -43,6 +43,7 @@ class AdministratorController extends Controller
         // Validate the incoming request data
         $validatedData = $request->validate([
             'userName' => 'required|string|max:100',
+            'userID' => 'required|string|max:12',
             'userNumber' => 'required|string|max:15',
             'userEmail' => 'required|email|unique:user,userEmail',
             'password' => 'required|string|min:6',
@@ -53,7 +54,7 @@ class AdministratorController extends Controller
 
         // Create a new user
         $user = User::create([
-            'userID' => uniqid(), // Generate a unique user ID
+            'userID' => $request->userID,
             'userName' => $request->userName,
             'userNumber' => $request->userNumber,
             'userEmail' => $request->userEmail,
