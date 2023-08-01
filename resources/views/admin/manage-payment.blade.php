@@ -14,10 +14,16 @@
                     <h2 class="fw-bold"><span class="underline pb-2">Manage Payment</span><br></h2>
                 </div>
             </div>
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <a class="btn btn-primary " role="button" href='tutor-sign-in'>Notify Student</a>
+                </div>
+            </div>
             <div class="card shadow">
                 <div class="card-header py-3">
                     <p class="text-primary m-0 fw-bold">Manage Payment</p>
                 </div>
+                
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 text-nowrap">
@@ -32,6 +38,7 @@
                             <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
                         </div>
                     </div>
+                    
                     <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
                         <table class="table my-0" id="dataTable">
                             <thead>
