@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Auth;
 class StudentController extends Controller
 {
 
+    public function logout(Request $request)
+    {
+        // Remove user data from the session
+        $request->session()->flush();
+
+        // Perform the logout action
+        Auth::logout();
+
+        return redirect('/student-sign-in');
+    }
+
     public function showLoginForm()
     {
         return view('student-sign-in');
@@ -25,6 +36,9 @@ class StudentController extends Controller
         $credentials['userType'] = 'Student'; // Make sure it's a student login only
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            // Store the user data in the session
+            $request->session()->put('user', $user);
             return redirect()->route('student.home');
         }
 
@@ -73,6 +87,8 @@ class StudentController extends Controller
             'guardianNumber' => $request->guardianNumber,
             'studentAddress' => $request->studentAddress,
         ]);
+
+        $request->session()->put('user', $user);
 
         // Redirect to a success page or any other page as needed
         return redirect()->route('student.home')->with('success', 'Registration successful!');
