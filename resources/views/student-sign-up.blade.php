@@ -6,15 +6,7 @@
 <body>
 
     @include('frame.index-navbar')
-
-    <div>
-        <?php
-            if(DB::connection()->getPdo()){
-                echo "Successfully connected to DB and DB name is " . DB::connection()->getDatabaseName();
-            }
-        ?>
-    </div>
-
+    
     <section class="py-4 py-md-5">
         <div class="container py-md-5">
             <div class="row">
@@ -27,6 +19,7 @@
                         <div class="mb-3"><h3>Student Information</h3></div>
                         <hr>
                         <div class="mb-3"><input class="form-control" type="text" id="userName" name="userName" placeholder="Name"></div>
+                        <div class="mb-3"><input class="form-control" type="text" id="userID" name="userID" placeholder="Identity Card"></div>
                         <div class="mb-3"><input class="form-control" type="tel" id="userNumber" name="userNumber" placeholder="Phone Number"></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="email" id="userEmail" name="userEmail" placeholder="Email"></div>
                         <div class="mb-3"><input class="shadow-sm form-control" type="password" id="password" name="password" placeholder="Password"></div>
