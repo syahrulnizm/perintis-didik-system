@@ -17,7 +17,7 @@
             </div>
         </div>
     </section>
-
+    
     @include('frame.footer')
 
     @include('frame.script')

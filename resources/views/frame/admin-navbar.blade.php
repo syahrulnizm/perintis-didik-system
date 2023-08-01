@@ -10,7 +10,7 @@
                 <li class="nav-item"><a class="nav-link" href='service'><i class="fas fa-wrench"></i><span>&nbsp;<strong>Service</strong></span></a></li>
                 <li class="nav-item"><a class="nav-link" href='subscription'><i class="fas fa-clipboard-list"></i><span>&nbsp;<strong>Subscription</strong></span></a></li>
                 <li class="nav-item"><a class="nav-link" href='profile'><i class="fas fa-user"></i><span>&nbsp;Profile</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='home'><i class="fas fa-sign-out-alt"></i><span>&nbsp;Sign out</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('student.logout') }}"><i class="fas fa-sign-out-alt"></i><span>&nbsp;Sign out</span></a></li>
             </ul>
         </div>
     </div>

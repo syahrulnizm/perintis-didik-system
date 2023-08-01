@@ -8,7 +8,7 @@
                 <li class="nav-item"><a class="nav-link" href='home'><i class="fas fa-home"></i><span>&nbsp;<strong>Home</strong></span></a></li>
                 <li class="nav-item"><a class="nav-link" href='schedule'><i class="fas fa-calendar-alt"></i><span>&nbsp;<strong>Schedule</strong></span></a></li>
                 <li class="nav-item"><a class="nav-link" href='profile'><i class="fas fa-user"></i><span>&nbsp;Profile</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='home'><i class="fas fa-sign-out-alt"></i><span>&nbsp;Sign out</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('student.logout') }}"><i class="fas fa-sign-out-alt"></i><span>&nbsp;Sign out</span></a></li>
             </ul>
         </div>
     </div>

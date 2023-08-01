@@ -17,7 +17,7 @@
             <div class="row mb-3">
                 <div class="col-lg-4">
                     <div class="card mb-3">
-                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="../assets/img/avatar/user-default.jpg" width="160" height="160">
+                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="{{ asset('img/avatar/user-default.jpg') }}" width="160" height="160">
                             <div class="mb-3"><input type="file"></div>
                         </div>
                     </div>

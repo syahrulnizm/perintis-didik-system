@@ -67,16 +67,21 @@
                                                     <p style="color: rgb(78,93,120);">{{ Auth::user()->userName }}</p>
                                                 </div>
                                             </div>
+                                            <div class="col">
+                                                <div class="mb-3"><label class="form-label" for="email"><strong>Identity Card</strong></label>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userID}}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="first_name"><strong>Phone Number</strong></label>
-                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userNumber }}</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userNumber}}</p>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="last_name"><strong>Email</strong></label>
-                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userNumber }}</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userEmail}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,24 +96,19 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="username"><strong>Full Name</strong></label>
-                                                    <p style="color: rgb(78,93,120);">Abdullah</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="mb-3"><label class="form-label" for="email"><strong>Identity Card</strong></label>
-                                                    <p style="color: rgb(78,93,120);">950102-10-3333</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->student->guardianName}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="first_name"><strong>Phone Number</strong></label>
-                                                    <p style="color: rgb(78,93,120);">012-3456-789</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->student->guardianNumber}}</p>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="last_name"><strong>Address</strong></label>
-                                                    <p style="color: rgb(78,93,120);">Taman Permata, Lorong Permata 5<br>Jalan Shah<br>4000 Shah Alam<br>Selangor</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->student->studentAddress}}</p>
                                                 </div>
                                             </div>
                                         </div>

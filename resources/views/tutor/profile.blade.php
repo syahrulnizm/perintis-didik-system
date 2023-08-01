@@ -17,7 +17,7 @@
             <div class="row mb-3">
                 <div class="col-lg-4">
                     <div class="card mb-3">
-                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="../assets/img/avatar/user-default.jpg" width="160" height="160">
+                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="{{ asset('img/avatar/user-default.jpg') }}" width="160" height="160">
                             <div class="mb-3"><input type="file"></div>
                         </div>
                     </div>
@@ -64,24 +64,24 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="username"><strong>Full Name</strong></label>
-                                                    <p style="color: rgb(78,93,120);">Abdullah</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userName }}</p>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="email"><strong>Identity Card</strong></label>
-                                                    <p style="color: rgb(78,93,120);">950102-10-3333</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userID}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="first_name"><strong>Phone Number</strong></label>
-                                                    <p style="color: rgb(78,93,120);">012-3456-789</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userNumber }}</p>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="last_name"><strong>Email</strong></label>
-                                                    <p style="color: rgb(78,93,120);">abdullah@domain.com</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->userNumber }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,18 +93,18 @@
                                             </div>
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="last_name"><strong>Education Level</strong></label>
-                                                    <p style="color: rgb(78,93,120);">Degree</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->tutor->educationLevel}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="mb-3"><label class="form-label" for="first_name"><strong>Working Experience</strong></label>
-                                                    <p style="color: rgb(78,93,120);">I was a lecturer before this.</p>
+                                                    <p style="color: rgb(78,93,120);">{{ Auth::user()->tutor->workingExperience}}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3"><a class="btn btn-primary btn-sm" role="button" href="profile-edit.php">Edit</a></div>
+                                        <div class="mb-3"><a class="btn btn-primary btn-sm" role="button" href='profile-edit'>Edit</a></div>
                                     </form>
                                 </div>
                             </div>
