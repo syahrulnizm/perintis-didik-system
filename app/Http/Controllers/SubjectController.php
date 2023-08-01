@@ -26,7 +26,6 @@ class SubjectController extends Controller
             'time' => 'required',
             'day' => 'required|string|max:10',
             'duration' => 'required|string|max:20',
-            'userID' => 'required|string|max:12',
             'eduID' => 'required|exists:educationlevel,eduID',
         ]);
 
@@ -38,7 +37,7 @@ class SubjectController extends Controller
             'duration' => $request->input('duration'),
             'eduID' => $request->input('eduID'),
         ]);
-       
+
         return redirect()->route('listsubject')->with('success', 'Subject created successfully!');
     }
 

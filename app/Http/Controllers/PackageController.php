@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Package;
@@ -13,36 +14,35 @@ class PackageController extends Controller
     {
         $packages = Package::all();
         $educationLevels = EducationLevel::pluck('eduName', 'eduID');
-    
-        return view('admin/package', compact('packages','educationLevels'));
-    } 
+
+        return view('admin/package', compact('packages', 'educationLevels'));
+    }
 
     // Create function
-    public function create(Request $request)
-    {
-        $request->validate([
-            'packageID' => 'required|string|max:10',
-            'packageName' => 'required|string|max:100',
-            'packageQuantity' => 'required|integer|min:0',
-            'packagePrice' => 'required|integer|min:0',
-            'eduID' => 'required|exists:educationlevel,eduID', // Correct the table name to 'educationlevel'
-        ]);
+    // Create function
+public function create(Request $request)
+{
+    $request->validate([
+        'packageID' => 'required|string|max:10',
+        'packageName' => 'required|string|max:100',
+        'packageQuantity' => 'required|integer|min:0',
+        'packagePrice' => 'required|numeric|min:0',
+        'eduID' => 'required|exists:educationlevel,eduID', // Correct the table name to 'educationlevel'
+    ]);
 
-        // Create a new Package with the validated data
-        Package:: create([
-            'packageID' => $request->input('packageID'),
-            'packageName' => $request->input('packageName'),
-            'packageQuantity' => $request->input('packageQuantity'),
-            'packagePrice' => $request->input('packagePrice'),
-            'eduID' => $request->input('eduID'),
-        ]);
+    // Create a new Package with the validated data
+    $package = Package::create([
+        'packageID' => $request->input('packageID'),
+        'packageName' => $request->input('packageName'),
+        'packageQuantity' => $request->input('packageQuantity'),
+        'packagePrice' => $request->input('packagePrice'),
+        'eduID' => $request->input('eduID'),
+    ]);
 
-        // Save the Package to the database
-        $package->save();
+    // Redirect to the 'listpackage' route after successful creation
+    return redirect()->route('listpackage')->with('success', 'Package created successfully!');
+}
 
-        // Redirect to the 'listpackage' route after successful creation
-        return redirect()->route('listpackage')->with('success', 'Package created successfully!');
-    }
 
     public function update(Request $request, $packageID)
     {
